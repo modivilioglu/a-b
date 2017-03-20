@@ -54,7 +54,7 @@ By the help of this support, any textual representation from the input file will
   "Different formats for textual input" should "be supported" in {
     implicit val config = FormatConfig(",", "DD/MM/YY", "#", "male", "female")
     "05/03/77".getDayOfMonth should be (5)
-	"James,Brown#Male#01/01/55".gender should be (Male)
+    "James,Brown#Male#01/01/55".gender should be (Male)
     "James,Brown#Male#01/01/55".name.firstName should be ("James")
   }
  ```
