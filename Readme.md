@@ -46,6 +46,18 @@ We can do something like this:
     (person1 |-?| person2) should be (1)
   }
   ```
+
+Also different textual representations are supported via FormatConfig class. This might be used
+created by a properties file and injected by , however, for now setting this on test should be sufficient.
+By the help of this support, any textual representation from the input file will be possible like the test case below.
+```
+  "Different formats for textual input" should "be supported" in {
+    implicit val config = FormatConfig(",", "DD/MM/YY", "#", "male", "female")
+    "05/03/77".getDayOfMonth should be (5)
+	"James,Brown#Male#01/01/55".gender should be (Male)
+    "James,Brown#Male#01/01/55".name.firstName should be ("James")
+  }
+ ```
 ## How to Run
 ```
 > git clone https://github.com/modivilioglu/address-book.git
