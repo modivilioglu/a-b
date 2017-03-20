@@ -8,7 +8,6 @@ trait AddressBookService {
   def getDayDifferenceByName(name1: Name, name2: Name): Option[Int]
   def getOldest: Person
   def getCountByGender(gender: Gender): Int
-
 }
 
 
