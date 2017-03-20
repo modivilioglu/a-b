@@ -5,7 +5,7 @@ package com.mod.addressbook.model
   */
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 class ModelSpec extends FlatSpec with BeforeAndAfter with Matchers {
-
+  implicit val config = FormatConfig(" ", "DD/MM/YYYY", ",", "male", "female")
   "Implicits" should "create Name from StringFormat" in {
     "James Brown".firstName should be ("James")
   }

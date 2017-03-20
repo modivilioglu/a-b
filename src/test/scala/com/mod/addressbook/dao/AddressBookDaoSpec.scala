@@ -10,6 +10,9 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 class AddressBookDaoSpec extends FlatSpec with BeforeAndAfter with Matchers {
   val injector = Guice.createInjector(new InjectionModule)
   val dao = injector.getInstance(classOf[AddressBookDao])
+
+  implicit val config = FormatConfig(" ", "DD/MM/YYYY", ",", "male", "female")
+
   "Dao" should "give the correct number of Males" in {
     dao.countByGender(Male) should be(3)
   }

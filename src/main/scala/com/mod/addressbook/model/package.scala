@@ -6,28 +6,26 @@ import org.joda.time.format._
   */
 package object model {
 
-  implicit def fromStringToName(name: String): Name = {
-    val args = name.split(" ")
+  implicit def fromStringToName(name: String)(implicit config: FormatConfig): Name = {
+    val args = name.split(config.nameDelimeter)
     Name(args(0), args(1))
   }
 
-  implicit def fromStringToGender(gender: String): Gender = gender.toLowerCase.trim match {
-    case "male" => Male
-    case "female" => Female
+  implicit def fromStringToGender(gender: String)(implicit config: FormatConfig): Gender = gender.toLowerCase.trim match {
+    case config.textForMale => Male
+    case config.textForFemale => Female
   }
 
-  implicit def fromStringToDate(date: String): DateTime = {
-    val formatter: DateTimeFormatter = DateTimeFormat.forPattern("DD/MM/YYYY");
+  implicit def fromStringToDate(date: String)(implicit config: FormatConfig): DateTime = {
+    val formatter: DateTimeFormatter = DateTimeFormat.forPattern(config.dateFormatter);
     formatter.parseDateTime(date.trim);
 
   }
 
-  implicit def lineToPerson(line: String): Person = {
-    val args = line.split(",")
+  implicit def lineToPerson(line: String)(implicit config: FormatConfig): Person = {
+    val args = line.split(config.personDelimeter)
     Person(args(0), args(1), args(2))
   }
-
-
 
   implicit class OlderThan(person1: Person) {
     def |-?|(person2: Person): Int = {

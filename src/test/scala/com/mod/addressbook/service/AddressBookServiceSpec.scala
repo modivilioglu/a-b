@@ -12,7 +12,7 @@ class AddressBookServiceSpec extends FlatSpec with BeforeAndAfter with Matchers 
   // How many males are in the address book?
   // Who is the oldest person in the address book?
   // How many days older is Bill than Paul?
-
+  implicit val config = FormatConfig(" ", "DD/MM/YYYY", ",", "male", "female")
   val injector = Guice.createInjector(new InjectionModule)
   val service = injector.getInstance(classOf[AddressBookService])
   "Service" should "give the correct number of Males" in {
